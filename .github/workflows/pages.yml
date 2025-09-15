@@ -25,7 +25,7 @@ jobs:
           dotnet-version: 9.0.x   # si tu csproj dijera net8.0, cambia a 8.0.x
 
       - name: Publish Blazor WASM
-        run: dotnet publish MiDiarioApp.csproj -c Release -o build -p:StaticWebAssetBasePath=MiDiario
+        run: dotnet publish MiDiarioApp.csproj -c Release -o build -p:StaticWebAssetBasePath=MiDiarioApp
 
       - name: Upload artifact (wwwroot)
         uses: actions/upload-pages-artifact@v3
