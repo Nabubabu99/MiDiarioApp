@@ -1,0 +1,39 @@
+@page "/notes"
+@inject MiDiarioApp.Services.NoteService NoteService
+
+<h3>Mi Diario Personal</h3>
+
+<textarea @bind="text" placeholder="Escribí tus pensamientos..." rows="4" cols="50"></textarea>
+<br />
+<button class="btn btn-primary" @onclick="SaveNote">Guardar</button>
+
+<h4>Notas guardadas</h4>
+<ul>
+    @foreach (var note in notes)
+    {
+        <li>
+            <b>@note.Date.ToString("dd/MM/yyyy HH:mm"):</b> @note.Text
+        </li>
+    }
+</ul>
+
+@code {
+    private string text;
+    private List<MiDiarioApp.Models.Note> notes = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        notes = await NoteService.GetNotesAsync();
+    }
+
+    private async Task SaveNote()
+    {
+        if (!string.IsNullOrWhiteSpace(text))
+        {
+            var note = new MiDiarioApp.Models.Note { Text = text };
+            await NoteService.SaveNoteAsync(note);
+            notes = await NoteService.GetNotesAsync();
+            text = string.Empty;
+        }
+    }
+}

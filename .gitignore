@@ -1,0 +1,27 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build output
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+[Bb]uild[Ll]og.*
+
+# Publicaciones
+publish/
+*.Publish.xml
+
+# IDEs
+.idea/
+.vscode/
+*.DotSettings.user
+
+# Otros
+*.vsidx
+*.db
+*.log
