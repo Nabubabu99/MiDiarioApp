@@ -19,11 +19,14 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 9.0.x   # usa 8.0.x si tu csproj dice net8.0
+          dotnet-version: 9.0.x   # si tu csproj dijera net8.0, cambia a 8.0.x
+
       - name: Publish Blazor WASM
-        run: dotnet publish MiDiarioApp/MiDiarioApp.csproj -c Release -o build -p:StaticWebAssetBasePath=MiDiario
+        run: dotnet publish MiDiarioApp.csproj -c Release -o build -p:StaticWebAssetBasePath=MiDiario
+
       - name: Upload artifact (wwwroot)
         uses: actions/upload-pages-artifact@v3
         with:
